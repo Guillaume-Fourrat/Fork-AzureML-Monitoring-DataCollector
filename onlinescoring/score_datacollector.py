@@ -18,7 +18,6 @@ def init():
     global inputs_collector, outputs_collector, artificial_context
     inputs_collector = Collector(name='model_inputs')          
     outputs_collector = Collector(name='model_outputs')
-    artificial_context = BasicCorrelationContext(id='Laziz_Demo')
     print("========================================")
     print("--Initialised data collector variables--")
     print("========================================")
@@ -41,6 +40,8 @@ def run(raw_data):
     method and return the result back
     """
     logging.info("Request received")
+    #Create a correlation context with unique ID. This constructor is also accountable for picking the current timestamp that will be associated to query in logging.
+    artificial_context = BasicCorrelationContext()
     data = json.loads(raw_data)["data"]
     data = numpy.array(data)
 
